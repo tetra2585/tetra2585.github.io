@@ -1,0 +1,22 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "ZY4B7K8PLP.com.tetra2585.pashlo"
+        ],
+        "components": [
+          {
+            "/": "/pashlo/t/*",
+            "comment": "PASHLO のテンプレ共有リンク"
+          }
+        ],
+        "appID": "ZY4B7K8PLP.com.tetra2585.pashlo",
+        "paths": [
+          "/pashlo/t/*"
+        ]
+      }
+    ]
+  }
+}
