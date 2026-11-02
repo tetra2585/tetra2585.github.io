@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PASHLO で同じのやってみて</title>
+<meta name="description" content="友だちから PASHLO の撮り方が届きました。">
+<meta name="apple-itunes-app" content="app-id=6829155970, app-argument=pashlo://camera">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PASHLO">
+<meta property="og:title" content="PASHLO で同じのやってみて">
+<meta property="og:description" content="友だちから PASHLO の撮り方が届きました。">
+<meta property="og:url" content="https://tetra2585.github.io/pashlo/c/">
+<meta property="og:image" content="https://tetra2585.github.io/pashlo/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../pashlo/icon.png">
+<style>
+:root { --bg:#0e0e11; --panel:#1a1a20; --line:#2b2b33; --ink:#f5f5f7; --sub:#a1a1ac; --accent:#ffc94a; --accent-ink:#1a1305; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.7 -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+main { max-width:520px; margin:0 auto; padding:28px 16px 56px; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.04em; }
+.brand img { width:36px; height:36px; border-radius:9px; }
+.card { margin-top:22px; background:var(--panel); border:1px solid var(--line); border-radius:22px; padding:22px 20px; }
+.tag { color:var(--accent); font-weight:800; font-size:.9rem; }
+h1 { margin:.2em 0 .3em; font-size:2rem; line-height:1.25; }
+.desc { color:var(--sub); margin:0; }
+.steps { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 4px; padding:0; list-style:none; }
+.steps li { background:#24242c; border-radius:999px; padding:4px 12px; font-size:.9rem; }
+.steps b { color:var(--accent); margin-right:4px; }
+.pro { display:inline-block; margin-top:12px; font-size:.8rem; color:var(--accent-ink); background:var(--accent); border-radius:6px; padding:1px 8px; font-weight:800; }
+.btn { display:block; text-align:center; text-decoration:none; font-weight:800; border-radius:16px; padding:15px; margin-top:12px; }
+.btn.primary { background:var(--accent); color:var(--accent-ink); }
+.btn.ghost { border:1.5px solid var(--line); color:var(--ink); }
+.how { margin-top:26px; color:var(--sub); font-size:.92rem; }
+.how ol { padding-left:1.3em; }
+footer { margin-top:30px; font-size:.82rem; color:var(--sub); display:flex; gap:14px; flex-wrap:wrap; }
+footer a { color:var(--sub); }
+</style>
+</head>
+<body><main>
+<div class="brand"><img src="../../pashlo/icon.png" alt=""><span>PASHLO</span></div>
+<section class="card" id="card">
+<div class="tag">#パシャチャレ</div>
+<h1 id="title">同じのやってみて</h1>
+<p class="desc" id="lead">友だちから PASHLO の撮り方が届きました。</p>
+<ul class="steps" id="steps"></ul>
+<a class="btn primary" id="open" href="pashlo://camera">アプリで開く</a>
+<a class="btn ghost" id="store" href="https://apps.apple.com/jp/app/id6829155970">App Store で入手（無料）</a>
+</section>
+<div class="how">
+<p>はじめての方は</p>
+<ol>
+<li>PASHLO を入れる（無料・iPhone）</li>
+<li>このページに戻って「アプリで開く」を押す</li>
+<li>「はい、チーズ！」の合図に合わせてポーズ！</li>
+</ol>
+<p>撮った写真や動画は、あなたの iPhone の中だけに保存されます。</p>
+</div>
+<script>
+(function () {
+  var en = !/^ja/i.test(navigator.language || "");
+  function utf8(bytes) {
+    var s = "", i = 0;
+    while (i < bytes.length) {
+      var x = bytes[i], c;
+      if (x < 0x80) { c = x; i += 1; }
+      else if (x < 0xe0) { c = ((x & 31) << 6) | (bytes[i + 1] & 63); i += 2; }
+      else if (x < 0xf0) { c = ((x & 15) << 12) | ((bytes[i + 1] & 63) << 6) | (bytes[i + 2] & 63); i += 3; }
+      else { c = ((x & 7) << 18) | ((bytes[i + 1] & 63) << 12) | ((bytes[i + 2] & 63) << 6) | (bytes[i + 3] & 63); i += 4; }
+      s += String.fromCodePoint(c);
+    }
+    return s;
+  }
+  function decode(d) {
+    var A = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_", out = [], buf = 0, bits = 0;
+    for (var k = 0; k < d.length; k++) {
+      var v = A.indexOf(d[k]); if (v < 0) return null;
+      buf = (buf << 6) | v; bits += 6;
+      if (bits >= 8) { bits -= 8; out.push((buf >> bits) & 255); }
+    }
+    var o = JSON.parse(utf8(out));
+    if (!o || o.v !== 1 || typeof o.t !== "string" || !Array.isArray(o.p)) return null;
+    return { t: o.t.slice(0, 16), p: o.p.filter(function (x) { return typeof x === "string"; }).slice(0, 10).map(function (x) { return x.slice(0, 12); }) };
+  }
+  if (en) {
+    document.documentElement.lang = "en";
+    document.getElementById("title").textContent = "Try the same one";
+    document.getElementById("lead").textContent = "A friend sent you a PASHLO prompt.";
+    document.getElementById("open").textContent = "Open in the app";
+    document.getElementById("store").textContent = "Get it on the App Store (free)";
+    var how = document.querySelector(".how");
+    if (how) how.innerHTML = "<p>New here?</p><ol><li>Get PASHLO (free, iPhone)</li><li>Come back to this page and tap “Open in the app”</li><li>Strike a pose on the “Say cheese!” cue!</li></ol><p>Your photos and videos stay on your iPhone.</p>";
+  }
+  var d = new URLSearchParams(location.search).get("d");
+  var c = null;
+  try { c = d && d.length <= 2000 ? decode(d) : null; } catch (e) { c = null; }
+  if (!c) return;
+  document.getElementById("title").textContent = c.t;
+  document.getElementById("lead").textContent = en ? "Shoot it in this order:" : "この順番で撮ってみて";
+  var ul = document.getElementById("steps");
+  c.p.forEach(function (p, i) {
+    var li = document.createElement("li");
+    var b = document.createElement("b"); b.textContent = String(i + 1);
+    li.appendChild(b); li.appendChild(document.createTextNode(p));
+    ul.appendChild(li);
+  });
+  document.getElementById("open").href = "pashlo://prompt-link?d=" + encodeURIComponent(d);
+  document.title = c.t + (en ? " | Try it on PASHLO" : "｜PASHLO で同じのやってみて");
+})();
+</script>
+<footer>
+<a href="https://tetra2585.github.io/pashlo-legal/support/">サポート</a>
+<a href="https://tetra2585.github.io/pashlo-legal/privacy/">プライバシーポリシー</a>
+<a href="https://tetra2585.github.io/pashlo-legal/terms/">利用規約</a>
+</footer>
+</main></body>
+</html>

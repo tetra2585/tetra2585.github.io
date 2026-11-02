@@ -10,11 +10,16 @@
           {
             "/": "/pashlo/t/*",
             "comment": "PASHLO のテンプレ共有リンク"
+          },
+          {
+            "/": "/pashlo/c/*",
+            "comment": "PASHLO のマイお題（中身をリンクに入れたもの）"
           }
         ],
         "appID": "ZY4B7K8PLP.com.tetra2585.pashlo",
         "paths": [
-          "/pashlo/t/*"
+          "/pashlo/t/*",
+          "/pashlo/c/*"
         ]
       }
     ]
